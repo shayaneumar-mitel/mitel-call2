@@ -3,8 +3,6 @@ import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { FirstComponent } from './first/first.component';
-import { SecondComponent } from './second/second.component';
 import { TeamsAuthPopupComponent } from './teams-auth-popup/teams-auth-popup.component';
 import { TabComponent } from './tab/tab.component';
 import { WebComponent } from './web/web.component';
@@ -13,8 +11,6 @@ import { DialerComponent } from './dialer/dialer.component';
 @NgModule({
   declarations: [
     AppComponent,
-    FirstComponent,
-    SecondComponent,
     TeamsAuthPopupComponent,
     TabComponent,
     WebComponent,
