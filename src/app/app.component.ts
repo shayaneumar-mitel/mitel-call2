@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import AuthService from './services/AuthService';
+import * as microsoftTeams from '@microsoft/teams-js';
 
 @Component({
   selector: 'app-root',
@@ -11,5 +12,6 @@ export class AppComponent implements OnInit {
 
   ngOnInit(): void {
     AuthService.init();
+    microsoftTeams.initialize(<any>window);
   }
 }
