@@ -34,7 +34,7 @@ export class WebComponent implements OnInit {
     }
   }
 
-  getMessages() {
+  getContacts() {
 
     this.msGraphClient
       .api('users')
