@@ -6,13 +6,17 @@ import { AppComponent } from './app.component';
 import { FirstComponent } from './first/first.component';
 import { SecondComponent } from './second/second.component';
 import { TeamsAuthPopupComponent } from './teams-auth-popup/teams-auth-popup.component';
+import { TabComponent } from './tab/tab.component';
+import { WebComponent } from './web/web.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     FirstComponent,
     SecondComponent,
-    TeamsAuthPopupComponent
+    TeamsAuthPopupComponent,
+    TabComponent,
+    WebComponent
   ],
   imports: [
     BrowserModule,
