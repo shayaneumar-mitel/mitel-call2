@@ -8,6 +8,7 @@ import { SecondComponent } from './second/second.component';
 import { TeamsAuthPopupComponent } from './teams-auth-popup/teams-auth-popup.component';
 import { TabComponent } from './tab/tab.component';
 import { WebComponent } from './web/web.component';
+import { DialerComponent } from './dialer/dialer.component';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,8 @@ import { WebComponent } from './web/web.component';
     SecondComponent,
     TeamsAuthPopupComponent,
     TabComponent,
-    WebComponent
+    WebComponent,
+    DialerComponent
   ],
   imports: [
     BrowserModule,
