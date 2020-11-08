@@ -32,7 +32,7 @@ export class TabComponent implements OnInit {
     });
   }
 
-  getContacts() {
+  getContacts(event) {
     this.msGraphClient
       .api('users')
       .filter(`startswith(displayName,'${this.name}')`)
