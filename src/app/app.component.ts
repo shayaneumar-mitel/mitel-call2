@@ -12,6 +12,6 @@ export class AppComponent implements OnInit {
 
   ngOnInit(): void {
     AuthService.init();
-    microsoftTeams.initialize(<any>window);
+    microsoftTeams.initialize(window as any);
   }
 }
