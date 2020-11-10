@@ -14,17 +14,17 @@ class TeamsAuthService {
   }
 
   // Determine if someone is logged in
-  isLoggedIn() {
+  isLoggedIn(): boolean {
     return Date.now() < this.authState.expiresOn;
   }
 
   // Get the logged in user name or null if not logged in
-  getUsername() {
+  getUsername(): string {
     return this.authState.username;
   }
 
   // Call this to get an access token
-  getAccessToken(scopes, microsoftTeams) {
+  getAccessToken(scopes, microsoftTeams): Promise<void> {
 
     return new Promise((resolve, reject) => {
       microsoftTeams.authentication.authenticate({

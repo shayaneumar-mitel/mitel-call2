@@ -26,7 +26,7 @@ class AuthService {
     // MSAL request object to use over and over
     this.request = {
       scopes: ['user.read']
-    }
+    };
 
     // Keep this MSAL client around to manage state across SPA "pages"
     this.msalClient = new msal.PublicClientApplication(msalConfig);
@@ -34,9 +34,9 @@ class AuthService {
 
   // Call this on every request to an authenticated page
   // Promise returns true if user is logged in, false if user is not
-  async init() {
+  async init(): Promise<boolean> {
 
-    let response = await this.msalClient.handleRedirectPromise();
+    const response = await this.msalClient.handleRedirectPromise();
     if (response != null && response.account.username) {
       return true;
     } else {
@@ -53,13 +53,13 @@ class AuthService {
   }
 
   // Determine if someone is logged in
-  isLoggedIn() {
+  isLoggedIn(): boolean {
     const accounts = this.msalClient.getAllAccounts();
     return (accounts && accounts.length === 1);
   }
 
   // Get the logged in user name or null if not logged in
-  getUsername() {
+  getUsername(): string {
     const accounts = this.msalClient.getAllAccounts();
     let result = null;
 
@@ -72,7 +72,7 @@ class AuthService {
   }
 
   // Call this to log the user in
-  login(scopes) {
+  login(scopes): void {
     if (scopes) {
       this.request.scopes = scopes;
     }
@@ -83,14 +83,14 @@ class AuthService {
   }
 
   // Call this to get the access token
-  async getAccessToken(scopes) {
-    let { accessToken } =
+  async getAccessToken(scopes): Promise<string> {
+    const { accessToken } =
       await this.getAccessTokenEx(scopes);
     return accessToken;
   }
 
   // Call this to get the username, access token, and expiration date
-  async getAccessTokenEx(scopes) {
+  async getAccessTokenEx(scopes): Promise<any> {
 
     this.request.account =
       this.msalClient.getAccountByUsername(this.getUsername());
@@ -98,13 +98,13 @@ class AuthService {
       this.request.scopes = scopes;
     }
     try {
-      let resp = await this.msalClient.acquireTokenSilent(this.request);
+      const resp = await this.msalClient.acquireTokenSilent(this.request);
       if (resp && resp.accessToken) {
         return {
           username: this.getUsername(),
           accessToken: resp.accessToken,
           expiresOn: (new Date(resp.expiresOn)).getTime()
-        }
+        };
       } else {
         return null;
       }
