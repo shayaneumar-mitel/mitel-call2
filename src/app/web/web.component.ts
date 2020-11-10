@@ -11,7 +11,7 @@ export class WebComponent implements OnInit {
   msGraphClient: any;
   accessToken = null;
   messages = [];
-  name = '';
+  name = 'Shayane';
   error = '';
 
   constructor() { }
