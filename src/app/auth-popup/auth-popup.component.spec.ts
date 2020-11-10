@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { TeamsAuthPopupComponent } from './teams-auth-popup.component';
+import { AuthPopupComponent } from './auth-popup.component';
 
 describe('TeamsAuthPopupComponent', () => {
-  let component: TeamsAuthPopupComponent;
-  let fixture: ComponentFixture<TeamsAuthPopupComponent>;
+  let component: AuthPopupComponent;
+  let fixture: ComponentFixture<AuthPopupComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ TeamsAuthPopupComponent ]
+      declarations: [ AuthPopupComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(TeamsAuthPopupComponent);
+    fixture = TestBed.createComponent(AuthPopupComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

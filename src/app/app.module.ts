@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { TeamsAuthPopupComponent } from './teams-auth-popup/teams-auth-popup.component';
+import { AuthPopupComponent } from './auth-popup/auth-popup.component';
 import { TabComponent } from './tab/tab.component';
 import { WebComponent } from './web/web.component';
 import { DialerComponent } from './dialer/dialer.component';
@@ -13,7 +13,7 @@ import { SoftphoneLauncherComponent } from './softphone-launcher/softphone-launc
 @NgModule({
   declarations: [
     AppComponent,
-    TeamsAuthPopupComponent,
+    AuthPopupComponent,
     TabComponent,
     WebComponent,
     DialerComponent,

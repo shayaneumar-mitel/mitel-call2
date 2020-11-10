@@ -1,4 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { RouterTestingModule } from '@angular/router/testing';
 
 import { SoftphoneLauncherComponent } from './softphone-launcher.component';
 
@@ -8,9 +9,10 @@ describe('SoftphoneLauncherComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ SoftphoneLauncherComponent ]
+      imports: [RouterTestingModule],
+      declarations: [SoftphoneLauncherComponent]
     })
-    .compileComponents();
+      .compileComponents();
   });
 
   beforeEach(() => {

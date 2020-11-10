@@ -4,10 +4,10 @@ import * as microsoftTeams from '@microsoft/teams-js';
 
 @Component({
   selector: 'app-teams-auth-popup',
-  templateUrl: './teams-auth-popup.component.html',
-  styleUrls: ['./teams-auth-popup.component.less']
+  templateUrl: './auth-popup.component.html',
+  styleUrls: ['./auth-popup.component.less']
 })
-export class TeamsAuthPopupComponent implements OnInit {
+export class AuthPopupComponent implements OnInit {
 
   constructor() { }
 
