@@ -2,3 +2,6 @@
 <button (click)="getContacts($event)">
   Get Contacts
 </button>
+<div *ngFor="let message of messages">
+  {{message.displayName}}: {{message.businessPhones[0]}}
+</div>
