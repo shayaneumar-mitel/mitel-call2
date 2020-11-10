@@ -10,7 +10,10 @@ describe('SoftphoneLauncherComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [RouterTestingModule],
-      declarations: [SoftphoneLauncherComponent]
+      declarations: [SoftphoneLauncherComponent],
+      providers: [
+        { provide: Window, useValue: window }
+      ]
     })
       .compileComponents();
   });

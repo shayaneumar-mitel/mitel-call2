@@ -8,9 +8,12 @@ describe('WebComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ WebComponent ]
+      declarations: [WebComponent],
+      providers: [
+        { provide: Window, useValue: window }
+      ]
     })
-    .compileComponents();
+      .compileComponents();
   });
 
   beforeEach(() => {

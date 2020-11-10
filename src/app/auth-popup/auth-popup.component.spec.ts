@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { AuthPopupComponent } from './auth-popup.component';
+import { AuthPopupComponent } from './AuthPopupComponent';
 
 describe('TeamsAuthPopupComponent', () => {
   let component: AuthPopupComponent;
@@ -8,9 +8,12 @@ describe('TeamsAuthPopupComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ AuthPopupComponent ]
+      declarations: [AuthPopupComponent],
+      providers: [
+        { provide: Window, useValue: window }
+      ]
     })
-    .compileComponents();
+      .compileComponents();
   });
 
   beforeEach(() => {

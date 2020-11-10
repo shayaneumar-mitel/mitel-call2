@@ -14,7 +14,7 @@ export class WebComponent implements OnInit {
   contactName = '';
   error = '';
 
-  constructor(private authService: AuthService) { }
+  constructor(private authService: AuthService, private window: Window) { }
 
   ngOnInit(): void {
     if (!this.authService.isLoggedIn()) {
@@ -50,7 +50,7 @@ export class WebComponent implements OnInit {
 
   callhandler(event, phoneNumber): void {
     console.log(phoneNumber);
-    window.location.href = 'tel://' + phoneNumber;
+    this.window.location.href = 'tel://' + phoneNumber;
   }
 
 }

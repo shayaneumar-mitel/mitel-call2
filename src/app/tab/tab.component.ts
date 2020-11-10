@@ -15,7 +15,7 @@ export class TabComponent implements OnInit {
   error = '';
   contactName = '';
 
-  constructor(private teamsAuthService: TeamsAuthService) { }
+  constructor(private teamsAuthService: TeamsAuthService, private window: Window) { }
 
   ngOnInit(): void {
 
@@ -55,7 +55,7 @@ export class TabComponent implements OnInit {
             height: 535
           });
         } else {
-          window.location.href = 'tel://' + phoneNumber;
+          this.window.location.href = 'tel://' + phoneNumber;
         }
       }
     });

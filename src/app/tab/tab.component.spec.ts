@@ -8,7 +8,10 @@ describe('TabComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ TabComponent ]
+      declarations: [TabComponent],
+      providers: [
+        { provide: Window, useValue: window }
+      ]
     })
     .compileComponents();
   });

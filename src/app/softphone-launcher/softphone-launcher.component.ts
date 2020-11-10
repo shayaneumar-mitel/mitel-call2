@@ -9,14 +9,14 @@ import * as microsoftTeams from '@microsoft/teams-js';
 })
 export class SoftphoneLauncherComponent implements OnInit {
 
-  constructor(private route: ActivatedRoute) { }
+  constructor(private route: ActivatedRoute, private window: Window) { }
 
   ngOnInit(): void {
-    microsoftTeams.initialize(window as any);
+    microsoftTeams.initialize(this.window as any);
     microsoftTeams.getContext((context) => {
       if (context) {
         this.route.queryParams.subscribe(params => {
-          window.location.href = 'tel://' + params.number;
+          this.window.location.href = 'tel://' + params.number;
         });
       }
     });

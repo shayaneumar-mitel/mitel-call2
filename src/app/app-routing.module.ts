@@ -3,7 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { DialerComponent } from './dialer/dialer.component';
 import { SoftphoneLauncherComponent } from './softphone-launcher/softphone-launcher.component';
 import { TabComponent } from './tab/tab.component';
-import { AuthPopupComponent } from './auth-popup/auth-popup.component';
+import { AuthPopupComponent } from './auth-popup/AuthPopupComponent';
 import { WebComponent } from './web/web.component';
 
 const routes: Routes = [
