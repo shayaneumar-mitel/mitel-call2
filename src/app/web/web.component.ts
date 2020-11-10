@@ -48,4 +48,9 @@ export class WebComponent implements OnInit {
       });
   }
 
+  callhandler(event, phoneNumber): void {
+    console.log(phoneNumber);
+    window.location.href = 'tel://' + phoneNumber;
+  }
+
 }

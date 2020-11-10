@@ -8,6 +8,7 @@ import { TabComponent } from './tab/tab.component';
 import { WebComponent } from './web/web.component';
 import { DialerComponent } from './dialer/dialer.component';
 import { FormsModule } from '@angular/forms';
+import { SoftphoneLauncherComponent } from './softphone-launcher/softphone-launcher.component';
 
 @NgModule({
   declarations: [
@@ -15,7 +16,8 @@ import { FormsModule } from '@angular/forms';
     TeamsAuthPopupComponent,
     TabComponent,
     WebComponent,
-    DialerComponent
+    DialerComponent,
+    SoftphoneLauncherComponent
   ],
   imports: [
     BrowserModule,

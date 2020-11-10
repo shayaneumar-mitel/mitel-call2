@@ -45,4 +45,20 @@ export class TabComponent implements OnInit {
       });
   }
 
+  callhandler(event: any, phoneNumber: string): void {
+    microsoftTeams.getContext((context) => {
+      if (context) {
+        if (context.hostClientType === 'web') {
+          microsoftTeams.authentication.authenticate({
+            url: window.location.origin + '#/softphonelauncher?number=' + phoneNumber,
+            width: 600,
+            height: 535
+          });
+        } else {
+          window.location.href = 'tel://' + phoneNumber;
+        }
+      }
+    });
+  }
+
 }
