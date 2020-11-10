@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import AuthService from '../services/AuthService';
+
 import * as microsoftTeams from '@microsoft/teams-js';
+import { AuthService } from '../services/AuthService';
 
 @Component({
   selector: 'app-teams-auth-popup',
@@ -9,7 +10,7 @@ import * as microsoftTeams from '@microsoft/teams-js';
 })
 export class AuthPopupComponent implements OnInit {
 
-  constructor() { }
+  constructor(private authService: AuthService) { }
 
   ngOnInit(): void {
     microsoftTeams.initialize(window as any);
@@ -17,11 +18,11 @@ export class AuthPopupComponent implements OnInit {
       if (context) {
         // If here we have a Teams context. Ensure we're logged in
         // and then request the access token.
-        if (!AuthService.isLoggedIn()) {
-          AuthService.login(['User.Read', 'User.ReadBasic.All', 'Directory.Read.All']);
+        if (!this.authService.isLoggedIn()) {
+          this.authService.login(['User.Read', 'User.ReadBasic.All', 'Directory.Read.All']);
           // This call won't return - catch it on the redirect
         } else {
-          AuthService.getAccessTokenEx(['User.Read', 'User.ReadBasic.All', 'Directory.Read.All'])
+          this.authService.getAccessTokenEx(['User.Read', 'User.ReadBasic.All', 'Directory.Read.All'])
             .then(({ username, accessToken, expiresOn }) => {
               if (accessToken) {
                 const response = JSON.stringify({ username, accessToken, expiresOn });
@@ -40,11 +41,11 @@ export class AuthPopupComponent implements OnInit {
 
     // // If here we have a Teams context. Ensure we're logged in
     // // and then request the access token.
-    if (!AuthService.isLoggedIn()) {
-      AuthService.login(['User.Read', 'User.ReadBasic.All', 'Directory.Read.All']);
+    if (!this.authService.isLoggedIn()) {
+      this.authService.login(['User.Read', 'User.ReadBasic.All', 'Directory.Read.All']);
       // This call won't return - catch it on the redirect
     } else {
-      AuthService.getAccessTokenEx(['User.Read', 'User.ReadBasic.All', 'Directory.Read.All'])
+      this.authService.getAccessTokenEx(['User.Read', 'User.ReadBasic.All', 'Directory.Read.All'])
         .then(({ username, accessToken, expiresOn }) => {
           if (accessToken) {
             const response = JSON.stringify({ username, accessToken, expiresOn })

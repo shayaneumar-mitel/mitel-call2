@@ -1,8 +1,13 @@
+
+import { Injectable } from '@angular/core';
 // TeamsAuthService is a singleton so it can retain the user's
 // state independent of React state. This module exports the single
 // instance of the service rather than the service class; just use it,
 // don't new it up.
-class TeamsAuthService {
+@Injectable({
+  providedIn: 'root',
+})
+export class TeamsAuthService {
   authState: any;
 
   constructor() {
@@ -46,5 +51,3 @@ class TeamsAuthService {
 
   }
 }
-
-export default new TeamsAuthService();

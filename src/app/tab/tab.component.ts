@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import * as MicrosoftGraphClient from '@microsoft/microsoft-graph-client';
-import TeamsAuthService from '../services/TeamsAuthService';
+import { TeamsAuthService } from '../services/TeamsAuthService';
 import * as microsoftTeams from '@microsoft/teams-js';
 
 @Component({
@@ -15,14 +15,14 @@ export class TabComponent implements OnInit {
   error = '';
   contactName = '';
 
-  constructor() { }
+  constructor(private teamsAuthService: TeamsAuthService) { }
 
   ngOnInit(): void {
 
     this.msGraphClient = MicrosoftGraphClient.Client.init({
       authProvider: async (done) => {
         if (!this.accessToken) {
-          const token = await TeamsAuthService
+          const token = await this.teamsAuthService
             .getAccessToken(['User.Read', 'User.ReadBasic.All', 'Directory.Read.All'],
               microsoftTeams);
           this.accessToken = token;

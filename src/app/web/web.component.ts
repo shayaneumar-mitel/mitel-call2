@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import * as MicrosoftGraphClient from '@microsoft/microsoft-graph-client';
-import AuthService from '../services/AuthService';
+import { AuthService } from '../services/AuthService';
 
 @Component({
   selector: 'app-web',
@@ -14,18 +14,18 @@ export class WebComponent implements OnInit {
   contactName = '';
   error = '';
 
-  constructor() { }
+  constructor(private authService: AuthService) { }
 
   ngOnInit(): void {
-    if (!AuthService.isLoggedIn()) {
+    if (!this.authService.isLoggedIn()) {
       // Will redirect the browser and not return; will redirect back if successful
-      AuthService.login(['User.Read', 'User.ReadBasic.All', 'Directory.Read.All']);
+      this.authService.login(['User.Read', 'User.ReadBasic.All', 'Directory.Read.All']);
     } else {
       this.msGraphClient = MicrosoftGraphClient.Client.init({
         authProvider: async (done) => {
           if (!this.accessToken) {
             // Might redirect the browser and not return; will redirect back if successful
-            const token = await AuthService.getAccessToken(['User.Read', 'User.ReadBasic.All', 'Directory.Read.All']);
+            const token = await this.authService.getAccessToken(['User.Read', 'User.ReadBasic.All', 'Directory.Read.All']);
             this.accessToken = token;
           }
           done(null, this.accessToken);

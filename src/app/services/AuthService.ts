@@ -1,3 +1,4 @@
+import { Injectable } from '@angular/core';
 import * as msal from '@azure/msal-browser';
 import * as Config from '../Config';
 
@@ -5,7 +6,10 @@ import * as Config from '../Config';
 // can retain state. This module exports the single instance
 // of the service rather than the service class; just use it,
 // don't new it up.
-class AuthService {
+@Injectable({
+  providedIn: 'root',
+})
+export class AuthService {
   msalClient: any;
   request: any;
 
@@ -119,5 +123,3 @@ class AuthService {
     }
   }
 }
-
-export default new AuthService();
