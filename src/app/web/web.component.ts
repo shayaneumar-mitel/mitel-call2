@@ -11,7 +11,7 @@ export class WebComponent implements OnInit {
   msGraphClient: any;
   accessToken = null;
   messages = [];
-  name = 'Shayane';
+  contactName = '';
   error = '';
 
   constructor() { }
@@ -38,7 +38,7 @@ export class WebComponent implements OnInit {
 
     this.msGraphClient
       .api('users')
-      .filter(`startswith(displayName,'${this.name}')`)
+      .filter(`startswith(displayName,'${this.contactName}')`)
       .get(async (error, rawMessages, rawResponse) => {
         if (!error) {
           this.messages = rawMessages.value;

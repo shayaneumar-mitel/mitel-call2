@@ -7,6 +7,7 @@ import { TeamsAuthPopupComponent } from './teams-auth-popup/teams-auth-popup.com
 import { TabComponent } from './tab/tab.component';
 import { WebComponent } from './web/web.component';
 import { DialerComponent } from './dialer/dialer.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { DialerComponent } from './dialer/dialer.component';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -12,8 +12,8 @@ export class TabComponent implements OnInit {
   msGraphClient: any;
   accessToken = null;
   messages = [];
-  name = 'Shayane';
   error = '';
+  contactName = '';
 
   constructor() { }
 
@@ -35,7 +35,7 @@ export class TabComponent implements OnInit {
   getContacts(event): void {
     this.msGraphClient
       .api('users')
-      .filter(`startswith(displayName,'${this.name}')`)
+      .filter(`startswith(displayName,'${this.contactName}')`)
       .get(async (error, rawMessages, rawResponse) => {
         if (!error) {
           this.messages = rawMessages.value;
