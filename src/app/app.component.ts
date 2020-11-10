@@ -8,7 +8,7 @@ import * as microsoftTeams from '@microsoft/teams-js';
   styleUrls: ['./app.component.less']
 })
 export class AppComponent implements OnInit {
-  title = 'test';
+  title = 'MS Teams Dialer';
 
   ngOnInit(): void {
     AuthService.init();
