@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
 import * as MicrosoftGraphClient from '@microsoft/microsoft-graph-client';
 import { TeamsAuthService } from '../services/TeamsAuthService';
 import * as microsoftTeams from '@microsoft/teams-js';
+import { DOCUMENT } from '@angular/common';
 
 @Component({
   selector: 'app-tab',
@@ -14,8 +15,11 @@ export class TabComponent implements OnInit {
   messages = [];
   error = '';
   contactName = '';
+  window: Window;
 
-  constructor(private teamsAuthService: TeamsAuthService, private window: Window) { }
+  constructor(private teamsAuthService: TeamsAuthService, @Inject(DOCUMENT) private document: Document) {
+    this.window = this.document.defaultView;
+  }
 
   ngOnInit(): void {
 

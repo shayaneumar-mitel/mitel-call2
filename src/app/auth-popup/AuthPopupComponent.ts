@@ -1,7 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
 import * as microsoftTeams from '@microsoft/teams-js';
 import { AuthService } from '../services/AuthService';
-
+import { DOCUMENT } from '@angular/common';
 
 @Component({
   selector: 'app-teams-auth-popup',
@@ -9,8 +9,11 @@ import { AuthService } from '../services/AuthService';
   styleUrls: ['./auth-popup.component.less']
 })
 export class AuthPopupComponent implements OnInit {
+  window: Window;
 
-  constructor(private authService: AuthService, private window: Window) { }
+  constructor(private authService: AuthService, @Inject(DOCUMENT) private document: Document) {
+    this.window = this.document.defaultView;
+  }
 
   ngOnInit(): void {
     microsoftTeams.initialize(this.window as any);

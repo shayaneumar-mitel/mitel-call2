@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
 import * as MicrosoftGraphClient from '@microsoft/microsoft-graph-client';
 import { AuthService } from '../services/AuthService';
+import { DOCUMENT } from '@angular/common';
 
 @Component({
   selector: 'app-web',
@@ -8,13 +9,17 @@ import { AuthService } from '../services/AuthService';
   styleUrls: ['./web.component.less']
 })
 export class WebComponent implements OnInit {
+  window: Window;
   msGraphClient: any;
   accessToken = null;
   messages = [];
   contactName = '';
   error = '';
 
-  constructor(private authService: AuthService, private window: Window) { }
+
+  constructor(private authService: AuthService, @Inject(DOCUMENT) private document: Document) {
+    this.window = this.document.defaultView;
+  }
 
   ngOnInit(): void {
     if (!this.authService.isLoggedIn()) {

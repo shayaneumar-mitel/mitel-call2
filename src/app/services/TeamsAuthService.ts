@@ -1,5 +1,8 @@
 
-import { Injectable } from '@angular/core';
+import { Inject, Injectable } from '@angular/core';
+import { DOCUMENT } from '@angular/common';
+
+
 // TeamsAuthService is a singleton so it can retain the user's
 // state independent of React state. This module exports the single
 // instance of the service rather than the service class; just use it,
@@ -9,8 +12,11 @@ import { Injectable } from '@angular/core';
 })
 export class TeamsAuthService {
   authState: any;
+  window: Window;
 
-  constructor() {
+  constructor(@Inject(DOCUMENT) private document: Document) {
+    this.window = this.document.defaultView;
+
     this.authState = {
       username: null,
       accessToken: null,

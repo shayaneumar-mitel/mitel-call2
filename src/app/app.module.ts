@@ -24,9 +24,6 @@ import { SoftphoneLauncherComponent } from './softphone-launcher/softphone-launc
     AppRoutingModule,
     FormsModule
   ],
-  providers: [
-    { provide: Window, useValue: window }
-  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

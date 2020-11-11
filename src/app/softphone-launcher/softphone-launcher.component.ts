@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import * as microsoftTeams from '@microsoft/teams-js';
+import { DOCUMENT } from '@angular/common';
 
 @Component({
   selector: 'app-softphone-launcher',
@@ -8,8 +9,11 @@ import * as microsoftTeams from '@microsoft/teams-js';
   styleUrls: ['./softphone-launcher.component.less']
 })
 export class SoftphoneLauncherComponent implements OnInit {
+  window: Window;
 
-  constructor(private route: ActivatedRoute, private window: Window) { }
+  constructor(private route: ActivatedRoute, @Inject(DOCUMENT) private document: Document) {
+    this.window = this.document.defaultView;
+  }
 
   ngOnInit(): void {
     microsoftTeams.initialize(this.window as any);
