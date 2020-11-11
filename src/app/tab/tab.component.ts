@@ -3,6 +3,8 @@ import * as MicrosoftGraphClient from '@microsoft/microsoft-graph-client';
 import { TeamsAuthService } from '../services/TeamsAuthService';
 import * as microsoftTeams from '@microsoft/teams-js';
 import { DOCUMENT } from '@angular/common';
+import { FormControl } from '@angular/forms';
+import { debounceTime, distinctUntilChanged, switchMap } from 'rxjs/operators';
 
 @Component({
   selector: 'app-tab',
@@ -10,19 +12,18 @@ import { DOCUMENT } from '@angular/common';
   styleUrls: ['./tab.component.less']
 })
 export class TabComponent implements OnInit {
-  msGraphClient: any;
+  msGraphClient: MicrosoftGraphClient.Client;
   accessToken = null;
-  messages = [];
+  contacts = [];
   error = '';
-  contactName = '';
   window: Window;
+  contactSearchField = new FormControl();
 
   constructor(private teamsAuthService: TeamsAuthService, @Inject(DOCUMENT) private document: Document) {
     this.window = this.document.defaultView;
   }
 
   ngOnInit(): void {
-
     this.msGraphClient = MicrosoftGraphClient.Client.init({
       authProvider: async (done) => {
         if (!this.accessToken) {
@@ -34,17 +35,24 @@ export class TabComponent implements OnInit {
         done(null, this.accessToken);
       }
     });
+
+    this.contactSearchField.valueChanges
+      .pipe(debounceTime(200),
+        distinctUntilChanged(),
+        switchMap((query) => this.getContacts(query))
+      )
+      .subscribe(() => { });
   }
 
-  getContacts(event): void {
+  getContacts(contactName: string): any {
     this.msGraphClient
       .api('users')
-      .filter(`startswith(displayName,'${this.contactName}')`)
+      .filter(`startswith(displayName,'${contactName}')`)
       .get(async (error, rawMessages, rawResponse) => {
         if (!error) {
-          this.messages = rawMessages.value;
+          this.contacts = rawMessages.value;
         } else {
-          this.error = error;
+          this.error = error.body;
         }
       });
   }

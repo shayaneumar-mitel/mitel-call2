@@ -7,7 +7,7 @@ import { AuthPopupComponent } from './auth-popup/AuthPopupComponent';
 import { TabComponent } from './tab/tab.component';
 import { WebComponent } from './web/web.component';
 import { DialerComponent } from './dialer/dialer.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SoftphoneLauncherComponent } from './softphone-launcher/softphone-launcher.component';
 
 @NgModule({
@@ -22,7 +22,7 @@ import { SoftphoneLauncherComponent } from './softphone-launcher/softphone-launc
   imports: [
     BrowserModule,
     AppRoutingModule,
-    FormsModule
+    ReactiveFormsModule
   ],
   bootstrap: [AppComponent]
 })

@@ -2,6 +2,8 @@ import { Component, Inject, OnInit } from '@angular/core';
 import * as MicrosoftGraphClient from '@microsoft/microsoft-graph-client';
 import { AuthService } from '../services/AuthService';
 import { DOCUMENT } from '@angular/common';
+import { FormControl } from '@angular/forms';
+import { debounceTime, distinctUntilChanged, switchMap } from 'rxjs/operators';
 
 @Component({
   selector: 'app-web',
@@ -10,12 +12,11 @@ import { DOCUMENT } from '@angular/common';
 })
 export class WebComponent implements OnInit {
   window: Window;
-  msGraphClient: any;
+  msGraphClient: MicrosoftGraphClient.Client;
   accessToken = null;
-  messages = [];
-  contactName = '';
+  contacts = [];
   error = '';
-
+  contactSearchField = new FormControl();
 
   constructor(private authService: AuthService, @Inject(DOCUMENT) private document: Document) {
     this.window = this.document.defaultView;
@@ -37,18 +38,24 @@ export class WebComponent implements OnInit {
         }
       });
     }
+
+    this.contactSearchField.valueChanges
+      .pipe(debounceTime(200),
+        distinctUntilChanged(),
+        switchMap((query) => this.getContacts(query))
+      )
+      .subscribe(() => { });
   }
 
-  getContacts(event): void {
-
+  getContacts(contactName: string): any {
     this.msGraphClient
       .api('users')
-      .filter(`startswith(displayName,'${this.contactName}')`)
+      .filter(`startswith(displayName,'${contactName}')`)
       .get(async (error, rawMessages, rawResponse) => {
         if (!error) {
-          this.messages = rawMessages.value;
+          this.contacts = rawMessages.value;
         } else {
-          this.error = error;
+          this.error = error.body;
         }
       });
   }
