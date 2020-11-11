@@ -1,0 +1,45 @@
+{
+  "$schema": "https://developer.microsoft.com/en-us/json-schemas/teams/v1.7/MicrosoftTeams.schema.json",
+  "manifestVersion": "1.7",
+  "version": "1.0.0",
+  "id": "a71a47af-a768-44e0-b93d-d6562fc26c7e",
+  "packageName": "io.github.pnp.sample.tab-aad-msal2",
+  "developer": {
+    "name": "Mitel",
+    "websiteUrl": "https://localhost:3000/",
+    "privacyUrl": "https://localhost:3000/#/privacy",
+    "termsOfUseUrl": "https://localhost:3000/#/termsofuse"
+  },
+  "icons": {
+    "color": "color.png",
+    "outline": "outline.png"
+  },
+  "name": {
+    "short": "Mitel Call",
+    "full": "Mitel Call"
+  },
+  "description": {
+    "short": "Mitel Call",
+    "full": "Mitel Call"
+  },
+  "accentColor": "#FFFFFF",
+  "staticTabs": [
+    {
+      "entityId": "index",
+      "name": "Mitel Call",
+      "contentUrl": "https://localhost:3000/#/tab",
+      "websiteUrl": "https://localhost:3000/#/web",
+      "scopes": [
+        "personal"
+      ]
+    }
+  ],
+  "permissions": [
+    "identity",
+    "messageTeamMembers"
+  ],
+  "validDomains": [
+    "localhost",
+    "2ca5f70fcebb.ngrok.io"
+  ]
+}

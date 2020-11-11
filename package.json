@@ -1,5 +1,5 @@
 {
-  "name": "test",
+  "name": "ms-teams-dialer",
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
