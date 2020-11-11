@@ -1,7 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
 
 import * as microsoftTeams from '@microsoft/teams-js';
 import { AuthService } from './services/AuthService';
+import { DOCUMENT } from '@angular/common';
+
 
 @Component({
   selector: 'app-root',
@@ -10,8 +12,11 @@ import { AuthService } from './services/AuthService';
 })
 export class AppComponent implements OnInit {
   title = 'MS Teams Dialer';
+  window: Window;
 
-  constructor(private authService: AuthService) { }
+  constructor(private authService: AuthService, @Inject(DOCUMENT) private document: Document) {
+    this.window = this.document.defaultView;
+  }
 
   ngOnInit(): void {
     this.authService.init();
