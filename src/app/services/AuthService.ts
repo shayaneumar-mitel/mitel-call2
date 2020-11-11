@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import * as msal from '@azure/msal-browser';
-import * as Config from '../Config';
+import * as Config from '../config';
 
 // AuthService is a singleton so one PublicClientApplication
 // can retain state. This module exports the single instance

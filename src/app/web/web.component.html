@@ -1,3 +1,4 @@
+<app-dialer></app-dialer>
 <input #textbox type="text" [formControl]="contactSearchField">
 <div *ngFor="let contact of contacts" (click)="callhandler($event, contact.businessPhones[0])">
   {{contact.displayName}}: {{contact.businessPhones[0]}}
