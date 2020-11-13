@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { AuthPopupComponent } from './AuthPopupComponent';
+import { AuthPopupComponent } from './auth-popup.component';
 
 describe('TeamsAuthPopupComponent', () => {
   let component: AuthPopupComponent;

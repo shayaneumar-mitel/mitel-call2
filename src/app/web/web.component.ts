@@ -1,6 +1,6 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import * as MicrosoftGraphClient from '@microsoft/microsoft-graph-client';
-import { AuthService } from '../services/AuthService';
+import { AuthService } from '../services/auth.service';
 import { DOCUMENT } from '@angular/common';
 import { FormControl } from '@angular/forms';
 import { debounceTime, distinctUntilChanged, switchMap } from 'rxjs/operators';

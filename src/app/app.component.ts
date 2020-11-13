@@ -1,7 +1,7 @@
 import { Component, Inject, OnInit } from '@angular/core';
 
 import * as microsoftTeams from '@microsoft/teams-js';
-import { AuthService } from './services/AuthService';
+import { AuthService } from './services/auth.service';
 import { DOCUMENT } from '@angular/common';
 
 

@@ -1,6 +1,6 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import * as MicrosoftGraphClient from '@microsoft/microsoft-graph-client';
-import { TeamsAuthService } from '../services/TeamsAuthService';
+import { AuthService } from '../services/auth.service';
 import * as microsoftTeams from '@microsoft/teams-js';
 import { DOCUMENT } from '@angular/common';
 import { FormControl } from '@angular/forms';
@@ -19,7 +19,7 @@ export class TabComponent implements OnInit {
   window: Window;
   contactSearchField = new FormControl();
 
-  constructor(private teamsAuthService: TeamsAuthService, @Inject(DOCUMENT) private document: Document) {
+  constructor(private authService: AuthService, @Inject(DOCUMENT) private document: Document) {
     this.window = this.document.defaultView;
   }
 
@@ -27,9 +27,8 @@ export class TabComponent implements OnInit {
     this.msGraphClient = MicrosoftGraphClient.Client.init({
       authProvider: async (done) => {
         if (!this.accessToken) {
-          const token = await this.teamsAuthService
-            .getAccessToken(['User.Read', 'User.ReadBasic.All', 'Directory.Read.All'],
-              microsoftTeams);
+          // Might redirect the browser and not return; will redirect back if successful
+          const token = await this.authService.getAccessToken(['User.Read', 'User.ReadBasic.All', 'Directory.Read.All']);
           this.accessToken = token;
         }
         done(null, this.accessToken);
